@@ -1,8 +1,10 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
-from pathlib import Path
 import plotly.io as pio
+import plotly.graph_objects as go
+from pathlib import Path
+
 pio.templates.default = "plotly_white"
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -187,3 +189,105 @@ fig.update_layout(
 )
 
 st.plotly_chart(fig, use_container_width=True)
+
+
+st.subheader("🕸 Player Performance Radar")
+
+player_list = sorted(df["Player"].unique())
+
+selected_player = st.selectbox(
+    "Select a player",
+    player_list
+)
+
+radar_features = [
+    "defensive_impact",
+    "pressing_ball_winning",
+    "ball_progression",
+    "chance_creation",
+    "possession_retention",
+    "off_ball_activity"
+]
+
+radar_labels = [
+    "Defensive Impact",
+    "Pressing & Ball Winning",
+    "Ball Progression",
+    "Chance Creation",
+    "Possession Retention",
+    "Off-Ball Activity"
+]
+
+player_data = df[df["Player"] == selected_player].iloc[0]
+
+values = [player_data[f] for f in radar_features]
+values += values[:1]
+
+labels = radar_labels + radar_labels[:1]
+
+radar_fig = go.Figure()
+
+radar_fig.add_trace(go.Scatterpolar(
+    r=values,
+    theta=labels,
+    fill="toself",
+    name=selected_player,
+
+    mode="lines+markers",
+
+    line=dict(
+        color="royalblue",
+        width=3
+    ),
+
+    marker=dict(
+        size=6,
+        color="royalblue"
+    ),
+
+    fillcolor="rgba(65,105,225,0.30)",
+
+    hovertemplate="<b>%{theta}</b><br>Percentile: %{r:.1f}<extra></extra>"
+))
+
+radar_fig.update_layout(
+
+    title=dict(
+        text=f"{selected_player} — Performance Profile",
+        x=0.5,
+        xanchor="center",
+        font=dict(size=22, color="black")
+    ),
+
+    polar=dict(
+
+        bgcolor="white",
+
+        radialaxis=dict(
+            visible=True,
+            range=[0,100],
+            tickvals=[0,20,40,60,80,100],
+            tickfont=dict(size=11, color="black"),
+            gridcolor="rgba(0,0,0,0.18)",
+            linecolor="rgba(0,0,0,0.35)",
+            linewidth=1.5
+        ),
+
+        angularaxis=dict(
+            tickfont=dict(size=12, color="black"),
+            gridcolor="rgba(0,0,0,0.15)",
+            linecolor="rgba(0,0,0,0.35)"
+        )
+    ),
+
+    paper_bgcolor="white",
+    plot_bgcolor="white",
+
+    height=650,
+
+    margin=dict(l=80, r=80, t=80, b=80),
+
+    showlegend=False
+)
+
+st.plotly_chart(radar_fig, use_container_width=True)
