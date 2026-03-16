@@ -1,0 +1,27 @@
+[33md3e4ed5[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m Add Player Performance Radar to Dashboard
+[33mdf5c95b[m Make changes in the Player Impact Map for better readability and experience
+[33m7546e5f[m Add SCS leaderboard table to Streamlit dashboard
+[33m42cfe27[m Create initial Streamlit dashboard app
+[33m4380e0f[m Initialize Streamlit dashboard structure
+[33m390bdaa[m Add player comparison radar chart for performance profile analysis
+[33me0e3311[m Edit the radar chart to improve readability
+[33m67e3e3e[m Add interactive player radar chart visualization using Plotly
+[33m9122252[m Rename SCS vs Goals Scatter plot and make changes to improve readability
+[33mbea7574[m Add SCS vs Goals scatter plot visualization for player impact analysis
+[33m805e45d[m Make changes to improve readability in SCS Leaderboard Visualization
+[33mcdceaf5[m Add Plotly leaderboard visualization for top SCS players
+[33m3fb450c[m Create visualization notebook for SCS analysis
+[33mae3fb26[m Add invisible contributors and goal specialist insight analysis
+[33maac7c83[m Refine invisible contributor definition using domain-aware goal threshold
+[33m082049b[m Implement invisible contributor detection using SCS and goal thresholds
+[33m7c70629[m Fix duplicate players by aggregating goals before merge
+[33m99140dd[m Merge Goals Column
+[33mbb3083b[m Rename raw dataset file for clearer understanding and add a new processed dataset file
+[33m369c1f0[m Create player leaderboard ranked by Shadow Contribution Score
+[33m3a48769[m Calculate Shadow Contribution Score using position-aware weighting
+[33m3358ba6[m Construct SCS performance dimensions from normalized percentile metrics
+[33m4ac7684[m Implement position-based percentile normalization for SCS metrics
+[33m83bf5c6[m Standardize player positions to primary role (DF, MF, FW)
+[33mdf156af[m Filter dataset to players with at least 900 minutes played
+[33mdb03db6[m Project setup and cleaned dataset ready for SCS feature engineering
+[33m5f5f031[m feat: initialize project structure and environment

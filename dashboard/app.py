@@ -61,9 +61,9 @@ fig = px.scatter(
         "SCS": "Shadow Contribution Score"
     },
     color_discrete_map={
-        "FW": "#1f77b4",
-        "MF": "#ff7f0e",
-        "DF": "#2ca02c"
+        "FW": "#377EB8",
+        "MF": "#E41A1C",
+        "DF": "#088208"
     }
 )
 
@@ -191,6 +191,8 @@ fig.update_layout(
 st.plotly_chart(fig, use_container_width=True)
 
 
+
+
 st.subheader("🕸 Player Performance Radar")
 
 player_list = sorted(df["Player"].unique())
@@ -291,3 +293,121 @@ radar_fig.update_layout(
 )
 
 st.plotly_chart(radar_fig, use_container_width=True)
+
+
+
+
+st.subheader("⚔️ Player Comparison Radar")
+
+col1, col2 = st.columns(2)
+
+with col1:
+    player1 = st.selectbox("Select Player 1", player_list)
+
+with col2:
+    player2 = st.selectbox("Select Player 2", player_list, index=1)
+
+p1 = df[df["Player"] == player1].iloc[0]
+p2 = df[df["Player"] == player2].iloc[0]
+
+values1 = [p1[f] for f in radar_features]
+values2 = [p2[f] for f in radar_features]
+
+values1 += values1[:1]
+values2 += values2[:1]
+
+labels = radar_labels + radar_labels[:1]
+
+comparison_fig = go.Figure()
+
+comparison_fig.add_trace(go.Scatterpolar(
+    r=values1,
+    theta=labels,
+    fill="toself",
+    name=player1,
+
+    mode="lines+markers",
+
+    line=dict(color="royalblue", width=3),
+    marker=dict(size=7, color="royalblue"),
+
+    fillcolor="rgba(65,105,225,0.30)",
+
+    hoveron="points",
+    hovertemplate=
+    "<b>"+player1+"</b><br>" +
+    "%{theta}: %{r:.1f} percentile" +
+    "<extra></extra>"
+))
+
+comparison_fig.add_trace(go.Scatterpolar(
+    r=values2,
+    theta=labels,
+    fill="toself",
+    name=player2,
+
+    mode="lines+markers",
+
+    line=dict(color="crimson", width=3),
+    marker=dict(size=7, color="crimson"),
+
+    fillcolor="rgba(220,20,60,0.25)",
+
+    hoveron="points",
+    hovertemplate=
+    "<b>"+player2+"</b><br>" +
+    "%{theta}: %{r:.1f} percentile" +
+    "<extra></extra>"
+))
+
+comparison_fig.update_layout(
+
+    title=dict(
+        text=f"{player1} vs {player2} — Performance Comparison",
+        x=0.5,
+        xanchor="center",
+        font=dict(size=22, color="black")
+    ),
+
+    polar=dict(
+
+        bgcolor="white",
+
+        radialaxis=dict(
+            visible=True,
+            range=[0,100],
+            tickvals=[0,20,40,60,80,100],
+            tickfont=dict(size=11, color="black"),
+            gridcolor="rgba(0,0,0,0.18)",
+            linecolor="rgba(0,0,0,0.35)",
+            linewidth=1.5
+        ),
+
+        angularaxis=dict(
+            tickfont=dict(size=12, color="black"),
+            gridcolor="rgba(0,0,0,0.15)",
+            linecolor="rgba(0,0,0,0.35)"
+        )
+    ),
+
+    paper_bgcolor="white",
+    plot_bgcolor="white",
+
+    height=650,
+
+    margin=dict(l=80, r=80, t=80, b=80),
+
+    legend=dict(
+        title=dict(
+            text="<b>Player</b>",
+            font=dict(size=14, color="black")
+        ),
+        font=dict(size=12, color="black"),
+        x=1.02,
+        y=1,
+        xanchor="left",
+        yanchor="top"
+    )
+)
+
+st.plotly_chart(comparison_fig, use_container_width=True)
