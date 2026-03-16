@@ -21,7 +21,17 @@ st.title("⚽ The Invisible 11 — Player Impact Analyzer")
 
 st.markdown(
 """
-Explore player contributions beyond goals and assists using the **Shadow Contribution Score (SCS)**.
+The **Invisible 11** identifies football players whose impact goes beyond goals and assists.
+
+Using the **Shadow Contribution Score (SCS)**, this dashboard highlights players who contribute through:
+
+• Defensive actions  
+• Ball progression  
+• Chance creation  
+• Possession retention  
+• Off-ball movement  
+
+Explore the visualizations below to discover the Premier League’s most **underrated contributors** from the 2022–23 season.
 """
 )
 
@@ -191,6 +201,34 @@ fig.update_layout(
 st.plotly_chart(fig, use_container_width=True)
 
 
+
+
+st.subheader("🕵️ Top Invisible Contributors")
+
+scs_threshold = df["SCS"].quantile(0.75)
+goals_threshold = df["Goals"].median()
+
+invisible_players = df[
+    (df["SCS"] >= scs_threshold) &
+    (df["Goals"] <= goals_threshold)
+]
+
+invisible_players = invisible_players.sort_values(
+    "SCS",
+    ascending=False
+)[["Player", "Squad", "Pos", "Goals", "SCS"]]
+
+invisible_players["SCS"] = invisible_players["SCS"].round(2)
+
+st.dataframe(
+    invisible_players.head(10),
+    use_container_width=True
+)
+
+
+
+
+st.header("🔍 Player Analysis")
 
 
 st.subheader("🕸 Player Performance Radar")
