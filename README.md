@@ -3,7 +3,7 @@
 
 A data analytics project that identifies football players whose contributions go beyond goals and assists using a custom metric called the **Shadow Contribution Score (SCS)**.
 
-🚀 Built using real-world football data to uncover hidden player impact beyond traditional statistics.
+📊 Built using real-world Premier League (2022–23) data to uncover hidden player impact beyond traditional metrics.
 
 
 ## 📌 Project Overview
@@ -77,18 +77,18 @@ Coming soon (Streamlit Cloud deployment planned)
 invisible-11/
 │
 ├── .streamlit/
-│ └── config.toml # Streamlit UI configuration
+│   └── config.toml # Streamlit UI configuration
 │
 ├── dashboard/
-│ └── app.py # Main Streamlit dashboard application
+│   └── app.py # Main Streamlit dashboard application
 │
 ├── data/
-│ ├── raw/ # Original dataset
-│ └── processed/ # Cleaned & SCS-ready dataset
+│   ├── raw/ # Original dataset
+│   └── processed/ # Cleaned & SCS-ready dataset
 │
 ├── notebooks/
-│ ├── data_exploration.ipynb # Data cleaning & preprocessing
-│ └── visualizations.ipynb # Feature engineering & plotting
+│   ├── data_exploration.ipynb # Data cleaning & preprocessing
+│   └── visualizations.ipynb # Feature engineering & plotting
 │
 ├── outputs/ # Dashboard screenshots for README
 │
@@ -148,7 +148,7 @@ streamlit run dashboard/app.py
 
 ## 💡 Key Insight
 
-Many players provide significant value without scoring goals.
+Many high-impact players contribute significantly without scoring goals.
 
 The **Shadow Contribution Score (SCS)** reveals these *"invisible contributors"* by capturing:
 
