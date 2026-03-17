@@ -3,6 +3,8 @@
 
 A data analytics project that identifies football players whose contributions go beyond goals and assists using a custom metric called the **Shadow Contribution Score (SCS)**.
 
+🚀 Built using real-world football data to uncover hidden player impact beyond traditional statistics.
+
 
 ## 📌 Project Overview
 
@@ -10,14 +12,19 @@ Traditional football metrics like goals and assists fail to capture the full imp
 
 This project introduces the **Shadow Contribution Score (SCS)** — a composite metric designed to evaluate player contributions across multiple dimensions:
 
-- Defensive actions  
-- Ball progression  
-- Chance creation  
-- Possession retention  
-- Pressing and ball recovery  
-- Off-ball activity  
+- Defensive actions    
+- Ball progression    
+- Chance creation    
+- Possession retention    
+- Pressing and ball recovery    
+- Off-ball activity    
 
 The system analyzes **Premier League 2022–23 players** and presents insights through an **interactive Streamlit dashboard**.
+
+
+## 🌐 Live Demo
+
+Coming soon (Streamlit Cloud deployment planned)
 
 
 ## 📊 Dashboard Visualizations
@@ -39,10 +46,10 @@ The system analyzes **Premier League 2022–23 players** and presents insights t
 
 - 📊 **Player Impact Map**  
   Visualize Goals vs SCS to identify:
-  - Invisible Contributors  
-  - Elite All-Rounders  
-  - Goal Specialists  
-  - Low Impact Players  
+  - Invisible Contributors    
+  - Elite All-Rounders    
+  - Goal Specialists    
+  - Low Impact Players    
 
 - 🕸 **Player Performance Radar**  
   Analyze a player's strengths across six dimensions.
@@ -56,16 +63,17 @@ The system analyzes **Premier League 2022–23 players** and presents insights t
 
 ## 🧰 Tech Stack
 
-- Python  
-- Pandas  
-- NumPy  
-- Plotly  
-- Streamlit  
-- Scikit-learn (cosine similarity)
+- Python    
+- Pandas    
+- NumPy    
+- Plotly    
+- Streamlit    
+- Scikit-learn (cosine similarity)  
 
 
 ## 📁 Project Structure
 
+```
 invisible-11/
 │
 ├── .streamlit/
@@ -75,7 +83,7 @@ invisible-11/
 │ └── app.py # Main Streamlit dashboard application
 │
 ├── data/
-│ ├── raw/ # Original FBref dataset
+│ ├── raw/ # Original dataset
 │ └── processed/ # Cleaned & SCS-ready dataset
 │
 ├── notebooks/
@@ -91,6 +99,7 @@ invisible-11/
 ├── .gitignore
 ├── README.md
 └── requirements.txt # Project dependencies
+```
 
 
 ## 🖥 How to Run
@@ -115,66 +124,58 @@ streamlit run dashboard/app.py
 ```
 
 
-## ⚙️ Methodology
+### 🔄 Data Pipeline
 
-The project follows a structured data pipeline:
-
-Raw Data
-↓
-Data Cleaning & Filtering
-↓
-Per-90 Normalization
-↓
-Position-Based Normalization
-↓
-Feature Engineering (Performance Dimensions)
-↓
-Shadow Contribution Score (SCS)
-↓
-Visualization & Dashboard
+- Raw Data    
+- Data Cleaning & Filtering    
+- Per-90 Normalization    
+- Position-Based Normalization    
+- Feature Engineering    
+- Shadow Contribution Score (SCS)    
+- Visualization & Dashboard    
 
 
-## Key Design Decisions
+## ⚙️ Key Design Decisions
 
--> Per-90 normalization ensures fair comparison across players with different playing time
+- Per-90 normalization ensures fair comparison across players with different playing time  
 
--> Minimum 900 minutes threshold removes small-sample bias
+- Minimum 900 minutes threshold removes small-sample bias  
 
--> Position-based scaling accounts for different player roles
+- Position-based scaling accounts for different player roles  
 
--> Percentile scaling (0–100) enables intuitive comparisons across metrics
+- Percentile scaling (0–100) enables intuitive comparisons across metrics  
 
 
 ## 💡 Key Insight
 
 Many players provide significant value without scoring goals.
 
-The Shadow Contribution Score (SCS) reveals these "invisible contributors" by capturing:
+The **Shadow Contribution Score (SCS)** reveals these *"invisible contributors"* by capturing:
 
--> Defensive contributions
+- Defensive contributions  
 
--> Ball progression
+- Ball progression  
 
--> Chance creation
+- Chance creation  
 
--> Off-ball activity
+- Off-ball activity  
 
 This allows for a more holistic evaluation of player performance beyond traditional statistics.
 
 
 ## 🔮 Future Improvements
 
--> Add player similarity using cosine similarity
+- Add player similarity using cosine similarity  
 
--> Extend analysis to multiple seasons
+- Extend analysis to multiple seasons  
 
--> Include team-level analytics
+- Include team-level analytics  
 
--> Deploy dashboard publicly (Streamlit Cloud)
+- Deploy dashboard publicly (Streamlit Cloud)  
 
 
 ## 📬 Contact
 
 If you’d like to connect or discuss this project:
 
-GitHub: https://github.com/lokesh-sangwan
+- GitHub: https://github.com/lokesh-sangwan
